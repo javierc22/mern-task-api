@@ -110,3 +110,31 @@ MONGO_DB = mongodb+srv://user_udemy:user_udemy@cluster0.mujzf.mongodb.net/mernta
 
 Para entorno de desarrollo instalar Mongo DB:
 https://linuxhint.com/install_mongodb_ubuntu_20_04/
+
+## 5. Petición de prueba
+
+Esto permitirá leer peticiones de tipo JSON en el proyecto
+~~~js
+// index.js
+
+// Habilitar express.json
+app.use(express.json({ extended: true }));
+~~~
+
+En el commit `456ba69 Enviar una petición a la API y leer contenido`, se puede enviar una petición de prueba desde **Postman** con lo siguiente:
+
+En *Headers* agregar *Content-Type: Application/json*
+
+<img src="./readme_images/13.png" height="400">
+
+En *Body* agregar valores de ejemplo para enviar
+
+<img src="./readme_images/14.png" height="400">
+
+En consola, deberiamos obtener esto:
+
+<img src="./readme_images/15.png" height="200">
+
+## 6. Modelos
+
+* Schema Types de Mongoose: https://mongoosejs.com/docs/schematypes.html
