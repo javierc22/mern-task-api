@@ -11,7 +11,7 @@ conectarDB();
 const PORT = process.env.PORT || 4000;
 
 // Importar rutas
-app.use('/api/usuarios', require('./routes/users'));
+app.use('/api/users', require('./routes/users'));
 
 // arrancar la app
 app.listen(PORT, () => {
