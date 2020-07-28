@@ -138,3 +138,24 @@ En consola, deberiamos obtener esto:
 ## 6. Modelos
 
 * Schema Types de Mongoose: https://mongoosejs.com/docs/schematypes.html
+
+## 7. Hashear Passwords en la base de datos
+
+7.1. Instalar **bcryptjs** (https://github.com/dcodeIO/bcrypt.js)
+~~~
+$ npm install bcryptjs
+~~~
+
+## 8. Validaciones
+
+8.1. Instalar **express-validator** (https://github.com/express-validator/express-validator)
+~~~
+$ npm install express-validator
+~~~
+
+### 9. Json Web Token
+
+9.1 Instalar **jsonwebtoken** (https://github.com/auth0/node-jsonwebtoken)
+~~~
+$ npm install jsonwebtoken
+~~~
