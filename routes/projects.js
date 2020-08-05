@@ -13,4 +13,10 @@ router.post('/',
   projectController.createProject
 );
 
+// Obtener proyectos: api/projects
+router.get('/', 
+  auth,
+  projectController.getProjects
+);
+
 module.exports = router;
