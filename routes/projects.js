@@ -19,4 +19,13 @@ router.get('/',
   projectController.getProjects
 );
 
+// Actualizar proyecto: api/projects/:id
+router.put('/:id', 
+  auth,
+  [
+    check('name', 'El nombre del proyecto es obligatorio').not().isEmpty()
+  ],
+  projectController.updateProject
+);
+
 module.exports = router;
