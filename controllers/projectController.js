@@ -54,10 +54,45 @@ exports.updateProject = async (req, res) => {
   }
 
   try {
+    // Revisar el ID
+    let project = await Project.findById(req.params.id);
+    // Respuesta en caso que el proyecto no exista
+    if (!project) {
+      return res.status(404).json({ mgs: 'Proyecto no encontrado' })
+    }
+    // Verificar creador del proyecto
+    if (project.creator.toString() !== req.user.id) {
+      return res.status(401).json({ mgs: 'No Autorizado' })
+    }
+
+    // Actualizar
+    project = await Project.findByIdAndUpdate({ _id: req.params.id }, { $set: newProject }, { new: true });
+    res.json({ project });
     
   } catch (error) {
     console.log(error);
     res.status(500).send('Error en el servidor')
   }
+}
 
+// Eliminar un proyecto
+exports.deleteProject = async (req, res) => {
+  try {
+    // Revisar el ID
+    let project = await Project.findById(req.params.id);
+    // Respuesta en caso que el proyecto no exista
+    if (!project) {
+      return res.status(404).json({ mgs: 'Proyecto no encontrado' })
+    }
+    // Verificar creador del proyecto
+    if (project.creator.toString() !== req.user.id) {
+      return res.status(401).json({ mgs: 'No Autorizado' })
+    }
+    // Eliminar el proyecto
+    await Project.findOneAndRemove({ _id: req.params.id });
+    res.json({ msg: 'Proyecto eliminado' })
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error en el servidor')
+  }
 }
