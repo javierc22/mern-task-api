@@ -20,4 +20,10 @@ router.get('/',
     taskController.getTasks
 );
 
+// Actualizar Tarea: api/tasks/:id
+router.put('/:id', 
+    auth,
+    taskController.updateTask
+);
+
 module.exports = router;
