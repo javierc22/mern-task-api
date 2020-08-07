@@ -9,4 +9,30 @@ exports.createTask = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json( { errors: errors.array() })
   }
-}
+
+  try {
+    // Extraer proyecto y comprobar si existe
+    const { project } = req.body;
+    
+    const projectTask = await Project.findById(project);
+
+    // Revisar si el proyecto existe
+    if (!projectTask) {
+      return res.status(404).json({ msg: 'Proyecto no encontrado' });
+    }
+
+    // Revisar si el creador del proyecto es igual al usuario actual 
+    if (projectTask.creator.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'No autorizado' });
+    }
+
+    // Crear la Tarea
+    const task = new Task(req.body);
+    await task.save();
+    res.json({ task });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Hubo un error');
+  }
+} 
