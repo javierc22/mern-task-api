@@ -36,3 +36,31 @@ exports.createTask = async (req, res) => {
     res.status(500).send('Hubo un error');
   }
 } 
+
+// Obtener tareas
+exports.getTasks = async (req, res) => {
+  try {
+    // Extraer proyecto y comprobar si existe
+    const { project } = req.body;
+
+    const projectTask = await Project.findById(project);
+
+    // Revisar si el proyecto existe
+    if (!projectTask) {
+      return res.status(404).json({ msg: 'Proyecto no encontrado' });
+    }
+
+    // Revisar si el creador del proyecto es igual al usuario actual 
+    if (projectTask.creator.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'No autorizado' });
+    }
+
+    // Obtener las tareas por proyecto
+    const tasks = await Task.find({ project });
+    res.json({ tasks });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Hubo un error');
+  }
+}

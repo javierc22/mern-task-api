@@ -14,4 +14,10 @@ router.post('/',
     taskController.createTask
 );
 
+// Obtener Tareas: api/tasks
+router.get('/', 
+    auth,
+    taskController.getTasks
+);
+
 module.exports = router;
