@@ -159,3 +159,10 @@ $ npm install express-validator
 ~~~
 $ npm install jsonwebtoken
 ~~~
+
+### 10. Instalar CORS
+
+10.1. Instalar **Cors**
+~~~
+npm i cors
+~~~
