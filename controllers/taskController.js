@@ -105,7 +105,7 @@ exports.updateTask = async (req, res) => {
 exports.deleteTask = async (req, res) => {
   try {
     // Extraer proyecto y comprobar si existe
-    const { project } = req.body;
+    const { project } = req.query;
 
     // Comprobar si la tarea existe
     let task = await Task.findById(req.params.id);
